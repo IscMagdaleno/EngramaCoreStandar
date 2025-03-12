@@ -47,7 +47,6 @@ it provides the essential code to facilitate database queries seamlessly from th
 -   C# 
 -   SQL
 -   .NET Core
--   Blazor (Opcional)
 -   Visual Studio 2022
 
 
