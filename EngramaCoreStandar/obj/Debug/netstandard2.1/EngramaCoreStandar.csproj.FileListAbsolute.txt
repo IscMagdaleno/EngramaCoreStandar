@@ -1,0 +1,11 @@
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.deps.json
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.dll
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.pdb
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.AssemblyReference.cache
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.GeneratedMSBuildEditorConfig.editorconfig
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfoInputs.cache
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfo.cs
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.CoreCompileInputs.cache
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.sourcelink.json
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.dll
+C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.pdb

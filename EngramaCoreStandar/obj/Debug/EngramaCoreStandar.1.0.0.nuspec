@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>EngramaCoreStandar</id>
+    <version>1.0.0</version>
+    <title>EngramaCore.Connections</title>
+    <authors>Engrama</authors>
+    <icon>Logo/Logo.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://engrama.dev/</projectUrl>
+    <description>A NuGet package designed to simplify database connectivity using Dapper and API communication via HttpClient. It streamlines CRUD development by reducing complexity and implementation time, providing an efficient and easy-to-use solution.</description>
+    <tags>C#, Dapper, HttpClient, .NET, DataBase, CRUD, APIRest</tags>
+    <repository type="git" commit="0f59e54c2f2c63044913cd6e7a5db2513f2d024c" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="AutoMapper" version="10.1.1" exclude="Build,Analyzers" />
+        <dependency id="Dapper" version="2.1.66" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Data.SqlClient" version="5.2.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="9.0.2" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.dll" target="lib\netstandard2.1\EngramaCoreStandar.dll" />
+    <file src="C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\Logo\Logo.png" target="\Logo\Logo.png" />
+    <file src="C:\Users\ing_s\OneDrive\Documentos\Engrama\Docs\README.md" target="\README.md" />
+  </files>
+</package>

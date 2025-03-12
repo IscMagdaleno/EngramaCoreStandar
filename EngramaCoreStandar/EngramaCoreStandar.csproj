@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Title>EngramaCore.Connections</Title>
+    <Authors>Engrama</Authors>
+    <Company>Engrama</Company>
+    <Description>A NuGet package designed to simplify database connectivity using Dapper and API communication via HttpClient. It streamlines CRUD development by reducing complexity and implementation time, providing an efficient and easy-to-use solution.</Description>
+    <PackageProjectUrl>https://engrama.dev</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>C#, Dapper, HttpClient, .NET, DataBase, CRUD, APIRest</PackageTags>
+	  <PackageIcon>Logo/Logo.png</PackageIcon>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Users\ing_s\OneDrive\Documentos\Engrama\Docs\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="Dapper" Version="2.1.66" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Logo\Logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+
+	</ItemGroup>
+
+
+</Project>
