@@ -9,3 +9,14 @@ C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\Eng
 C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.sourcelink.json
 C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.dll
 C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.pdb
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.deps.json
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.dll
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.pdb
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.AssemblyReference.cache
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.GeneratedMSBuildEditorConfig.editorconfig
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfoInputs.cache
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfo.cs
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.CoreCompileInputs.cache
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.sourcelink.json
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.dll
+C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.pdb

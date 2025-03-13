@@ -17,7 +17,7 @@ using System.Reflection;
     "ommunication via HttpClient. It streamlines CRUD development by reducing complex" +
     "ity and implementation time, providing an efficient and easy-to-use solution.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f59e54c2f2c63044913cd6e7a5db2513f2d024c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9f48aaa8b71c5709528c1165692ed6a4d924d73")]
 [assembly: System.Reflection.AssemblyProductAttribute("EngramaCoreStandar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EngramaCoreStandar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

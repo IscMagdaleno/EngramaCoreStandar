@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = EngramaCoreStandar
-build_property.ProjectDir = C:\ReposEngrama\EngramaFunctions\EngramaCoreStandar\
+build_property.ProjectDir = C:\ReposGithub\Core\EngramaCoreStandar\EngramaCoreStandar\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
