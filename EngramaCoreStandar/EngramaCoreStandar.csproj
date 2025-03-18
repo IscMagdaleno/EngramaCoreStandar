@@ -12,11 +12,12 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>C#, Dapper, HttpClient, .NET, DataBase, CRUD, APIRest</PackageTags>
 	  <PackageIcon>Logo/Logo.png</PackageIcon>
+	  <Version>1.0.2</Version>
 
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Users\ing_s\OneDrive\Documentos\Engrama\Docs\README.md">
+    <None Include="..\..\..\..\Users\ing_s\OneDrive\Documentos\Engrama\Docs\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -25,7 +26,7 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="Dapper" Version="2.1.66" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.2" />

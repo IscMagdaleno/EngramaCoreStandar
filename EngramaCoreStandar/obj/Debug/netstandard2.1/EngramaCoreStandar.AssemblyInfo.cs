@@ -16,11 +16,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A NuGet package designed to simplify database connectivity using Dapper and API c" +
     "ommunication via HttpClient. It streamlines CRUD development by reducing complex" +
     "ity and implementation time, providing an efficient and easy-to-use solution.")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9f48aaa8b71c5709528c1165692ed6a4d924d73")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.2.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.2+246ff4ed36ea9a0779347923a3b1a43e609bf9bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("EngramaCoreStandar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EngramaCoreStandar")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.2.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
 

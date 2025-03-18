@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-
-using EngramaCoreStandar.Dapper.Interfaces;
+﻿using EngramaCoreStandar.Dapper.Interfaces;
 using EngramaCoreStandar.Extensions;
+using EngramaCoreStandar.Mapper;
 
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +9,15 @@ namespace EngramaCoreStandar.Results
 {
 	public class ResponseHelper : IResponseHelper
 	{
-		private readonly IMapper _mapper;
+		private readonly MapperHelper _mapperHelper;
 
-		public ResponseHelper(IMapper mapper)
+		public ResponseHelper(MapperHelper mapperHelper)
 		{
-			_mapper = mapper;
+			_mapperHelper = mapperHelper;
 		}
 
 		public Response<IEnumerable<TResultado>> Validacion<TProducto, TResultado>(IEnumerable<TProducto> ModeloValidar)
-					 where TProducto : DbResult
-
+				 where TProducto : DbResult
 		{
 			var response = new Response<IEnumerable<TResultado>>();
 			response.Data = new List<TResultado>();
@@ -31,19 +29,16 @@ namespace EngramaCoreStandar.Results
 				{
 					response.IsSuccess = true;
 					response.Message = ModeloValidar.FirstOrDefault().vchMessage;
-					response.Data = _mapper.Map<IEnumerable<TResultado>>(ModeloValidar);
+					response.Data = _mapperHelper.GetEnumerable<TProducto, TResultado>(ModeloValidar);
 				}
 				else
 				{
-
 					response.IsSuccess = false;
 					response.Message = validacion.Msg;
 				}
-
 			}
 
 			return response;
-
 		}
 
 		public Response<TResultado> Validacion<TProducto, TResultado>(TProducto ModeloValidar)
@@ -61,7 +56,7 @@ namespace EngramaCoreStandar.Results
 				{
 					response.IsSuccess = true;
 					response.Message = ModeloValidar.vchMessage;
-					response.Data = _mapper.Map<TResultado>(ModeloValidar);
+					response.Data = _mapperHelper.Get<TProducto, TResultado>(ModeloValidar);
 				}
 				else
 				{
