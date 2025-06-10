@@ -27,16 +27,29 @@ namespace EngramaCoreStandar.Servicios
 
 		public async Task<HttpResponseWrapper<T>> Get<T>(string url)
 		{
-			var responseHTTP = await httpClient.GetAsync(url);
-			if (responseHTTP.IsSuccessStatusCode)
+			try
 			{
-				var response = await Deserialize<T>(responseHTTP, defaultJsonSerializerOptions);
-				var resultado = new HttpResponseWrapper<T>(response, true, responseHTTP);
-				return resultado;
+
+				var responseHTTP = await httpClient.GetAsync(url);
+				if (responseHTTP.IsSuccessStatusCode)
+				{
+					var response = await Deserialize<T>(responseHTTP, defaultJsonSerializerOptions);
+					var resultado = new HttpResponseWrapper<T>(response, true, responseHTTP);
+					return resultado;
+				}
+				else
+				{
+					var resultado = new HttpResponseWrapper<T>(default, false, responseHTTP);
+					return resultado;
+				}
 			}
-			else
+			catch (Exception ex)
 			{
-				var resultado = new HttpResponseWrapper<T>(default, false, responseHTTP);
+
+				loggerHelper.Info(ex.Message);
+
+				var resultado = new HttpResponseWrapper<T>(default, false, new HttpResponseMessage());
+
 				return resultado;
 			}
 		}
@@ -55,23 +68,40 @@ namespace EngramaCoreStandar.Servicios
 		{
 
 			loggerHelper.Info(url);
-
-			var dataJson = JsonSerializer.Serialize(data);
-
-			var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
-			loggerHelper.Info(dataJson);
-
-			var response = await httpClient.PostAsync(url, stringContent);
-			if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.BadRequest)
+			var response = new HttpResponseMessage();
+			try
 			{
-				var responseDeserialized = await Deserialize<TResponse>(response, defaultJsonSerializerOptions);
-				var resultado = new HttpResponseWrapper<TResponse>(responseDeserialized, true, response);
-				return resultado;
+
+				var dataJson = JsonSerializer.Serialize(data);
+
+				var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
+				loggerHelper.Info(dataJson);
+
+				response = await httpClient.PostAsync(url, stringContent);
+				if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.BadRequest)
+				{
+					var responseDeserialized = await Deserialize<TResponse>(response, defaultJsonSerializerOptions);
+					var resultado = new HttpResponseWrapper<TResponse>(responseDeserialized, true, response);
+					return resultado;
+				}
+				else
+				{
+					Console.WriteLine(url + response.StatusCode);
+
+					if (response.IsNull())
+					{
+						response = new HttpResponseMessage();
+					}
+					var resultado = new HttpResponseWrapper<TResponse>(default, false, response);
+
+					return resultado;
+
+				}
 			}
-			else
+			catch (Exception ex)
 			{
-				Console.WriteLine(url + response.StatusCode);
 
+				loggerHelper.Info(ex.Message);
 				if (response.IsNull())
 				{
 					response = new HttpResponseMessage();
@@ -79,7 +109,6 @@ namespace EngramaCoreStandar.Servicios
 				var resultado = new HttpResponseWrapper<TResponse>(default, false, response);
 
 				return resultado;
-
 			}
 
 
