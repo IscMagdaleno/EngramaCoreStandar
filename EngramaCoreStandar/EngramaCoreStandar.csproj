@@ -12,12 +12,13 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>C#, Dapper, HttpClient, .NET, DataBase, CRUD, APIRest</PackageTags>
 	  <PackageIcon>Logo/Logo.png</PackageIcon>
-	  <Version>1.0.2</Version>
+	  <Version>1.0.4</Version>
+	  <RepositoryUrl>https://github.com/IscMagdaleno/EngramaCoreStandar</RepositoryUrl>
 
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\Users\ing_s\OneDrive\Documentos\Engrama\Docs\README.md">
+    <None Include="..\..\..\..\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Docs\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

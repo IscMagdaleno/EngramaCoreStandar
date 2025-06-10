@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.1": {},
     ".NETStandard,Version=v2.1/": {
-      "EngramaCoreStandar/1.0.2": {
+      "EngramaCoreStandar/1.0.4": {
         "dependencies": {
           "AutoMapper": "12.0.1",
           "Dapper": "2.1.66",
@@ -593,7 +593,7 @@
     }
   },
   "libraries": {
-    "EngramaCoreStandar/1.0.2": {
+    "EngramaCoreStandar/1.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

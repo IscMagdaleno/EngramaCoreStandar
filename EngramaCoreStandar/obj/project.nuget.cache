@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ysz8Oybzjoo=",
+  "dgSpecHash": "NBQr3Jqhg6s=",
   "success": true,
-  "projectFilePath": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
+  "projectFilePath": "C:\\ReposEngrama\\Nugets\\Standar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ing_s\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ing_s\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",

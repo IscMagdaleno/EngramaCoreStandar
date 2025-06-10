@@ -2767,13 +2767,13 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "restore": {
-      "projectUniqueName": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
+      "projectUniqueName": "C:\\ReposEngrama\\Nugets\\Standar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
       "projectName": "EngramaCoreStandar",
-      "projectPath": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
+      "projectPath": "C:\\ReposEngrama\\Nugets\\Standar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
       "packagesPath": "C:\\Users\\ing_s\\.nuget\\packages\\",
-      "outputPath": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\obj\\",
+      "outputPath": "C:\\ReposEngrama\\Nugets\\Standar\\EngramaCoreStandar\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
