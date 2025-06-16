@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj": {
-      "version": "1.0.4",
+      "version": "1.0.5",
       "restore": {
         "projectUniqueName": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
         "projectName": "EngramaCoreStandar",
@@ -65,6 +65,10 @@
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
               "version": "[9.0.2, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.6, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
