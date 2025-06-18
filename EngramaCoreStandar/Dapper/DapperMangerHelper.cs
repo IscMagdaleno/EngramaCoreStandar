@@ -512,7 +512,14 @@ namespace EngramaCoreStandar.Dapper
 
 					foreach (var prop in OnlyValidAtributos)
 					{
-						var dbType = DbTypeMap[prop.PropertyType.FullName];
+						var fullname = prop.PropertyType.FullName;
+						if (fullname.Contains("System.Nullable"))
+						{
+							fullname = fullname.Replace("System.Nullable`1[[", "");//
+							fullname = fullname.Substring(0, fullname.IndexOf(","));//
+						}
+
+						var dbType = DbTypeMap[fullname];
 
 						var value = prop.GetValue(obj);
 
