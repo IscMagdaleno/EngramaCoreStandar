@@ -71,6 +71,7 @@ namespace EngramaCoreStandar.Dapper
 
 			DbTypeMap.Add("System.Datetime", DbType.DateTime);
 			DbTypeMap.Add("System.DateTime", DbType.DateTime);
+			DbTypeMap.Add("System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", DbType.DateTime);
 		}
 
 		#region Gets from script
