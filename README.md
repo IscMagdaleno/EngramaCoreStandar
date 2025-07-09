@@ -32,6 +32,15 @@ public class QuickRequestController : ControllerBase
 }
 ```
 
+- In your appsettings.json file, add your connection string, or use the following one to test the code:
+```json
+
+    "ConnectionStrings": {
+        "EngramaCloudConnection": "Data Source=Engrama.mssql.somee.com;Initial Catalog=Engrama;User ID=MMartinez_SQLLogin_1;Password=95xodkhgxa;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+
+    },
+```
+
 - On your endpoint set the next code to call the stored procedure in the database:
 This is only and exmple you use your own procedure and your own atributes.
 
