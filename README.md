@@ -1,10 +1,17 @@
 
 
-# Engrama Core
+# Engrama Core Standar
 
-A comprehensive library of functions and processes designed to simplify software development.
-Access databases, integrate with APIs, generate documents, and handle JSON—everything required 
-for day-to-day operations, conveniently available in a single NuGet package.
+**Engrama Core** is a powerful and modular library designed to accelerate web application development.  
+It centralizes essential functionalities such as:
+
+- 📡 API integration  
+- 🗃️ Database access  
+- 📄 Document generation (PDF/Excel)  
+- 🔐 Authentication and authorization  
+- 🧰 Utilities and JSON handling  
+
+Everything you need for day-to-day development, packaged into a single, easy-to-use NuGet library.
 
 ## Installations
 To install Engrama Core, you can use the following steps in your API .NET:
@@ -100,25 +107,30 @@ Use our documentation to implement the NuGet package and take full advantage of 
 
 
 
-## Characteristics
+## Key Features
 
-- Perform database queries efficiently
-- Integrate with APIs seamlessly
-- Send emails with ease
-- Read and create Excel files effortlessly
-- Implement JWT authentication securely
-- Utilize robust logging mechanisms
-- Read and generate PDF documents
-- Use variable extensions to streamline validations and simplify functions
+ - ✅ Seamless database querying via stored procedures
+
+ - 📤 Send emails with prebuilt utilities
+
+ - 📊 Create and read Excel files
+
+ - 📄 Generate and read PDF documents
+
+ - 🔐 Secure JWT authentication
+
+ - 📈 Logging support
+
+ - 🛠 Useful variable extensions for clean validations
+
+ - 🔗 API consumption made simple
 
 
 ## Engrama Tools
 
 - [Engrama tools](https://engrama.azurewebsites.net)
 
-A web application built to fully leverage the capabilities of EngramaCore. By analyzing the database,
-it provides the essential code to facilitate database queries seamlessly from the service layer to the architecture layer, along with numerous additional tools and features.
-
+A web-based companion that analyzes your SQL database and automatically generates service and repository code to work with EngramaCoreStandar—boosting productivity and reducing repetitive work.
 
 ## 🔗 Links
 
@@ -132,13 +144,19 @@ it provides the essential code to facilitate database queries seamlessly from th
 
 
 
-## 🛠 Skills 
+## 🛠 Technologies Used 
 
--   C# 
--   SQL
--   .NET Core
--   Blazor (Opcional)
--   Visual Studio 2022
+ - 🧠 C# / .NET Core
+
+ - 🗄️ SQL Server
+
+ - ⚙️ EngramaCoreStandar
+
+ - 🌐 Blazor (optional)
+
+ - 🧱 MudBlazor
+
+ - 🧰 Visual Studio 2022
 
 
 
@@ -147,7 +165,7 @@ it provides the essential code to facilitate database queries seamlessly from th
 - [@IscMagdaleno](https://github.com/IscMagdaleno)
 
 
-## Comments
+## Feedback & Contact
 
-For any questions or feedback, don't hesitate to reach out to us at engramahelper@gmail.com.
-
+For questions, support, or collaboration:
+📩 engramahelper@gmail.com
