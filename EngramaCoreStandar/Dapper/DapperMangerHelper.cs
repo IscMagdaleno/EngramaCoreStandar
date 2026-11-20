@@ -1,5 +1,6 @@
-﻿using Dapper;
+using Dapper;
 
+using EngramaCoreStandar;
 using EngramaCoreStandar.Dapper.Interfaces;
 using EngramaCoreStandar.Extensions;
 using EngramaCoreStandar.Logger;
@@ -7,6 +8,7 @@ using EngramaCoreStandar.Results;
 
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 using System;
 using System.Collections.Generic;
@@ -24,8 +26,9 @@ namespace EngramaCoreStandar.Dapper
 	{
 		public IDapperManager DapperManager { get; set; }
 		public ILoggerHelper LoggerHelper { get; }
+		private readonly ILogger<DapperMangerHelper> _logger;
 
-		/**/
+		/***/
 
 		private readonly Dictionary<string, DbType> DbTypeMap = new Dictionary<string, DbType>();
 
@@ -34,12 +37,13 @@ namespace EngramaCoreStandar.Dapper
 		private string ConnectionString { get; set; }
 
 
-		public DapperMangerHelper(IDapperManager dapperManager, ILoggerHelper loggerHelper, IConfiguration configuration)
+		public DapperMangerHelper(IDapperManager dapperManager, ILoggerHelper loggerHelper, IConfiguration configuration, ILogger<DapperMangerHelper> logger)
 		{
 			ConnectionString = configuration.GetConnectionString("EngramaCloudConnection");
 
 			DapperManager = dapperManager;
 			LoggerHelper = loggerHelper;
+			_logger = logger;
 
 			DbTypeMap.Add("System.Boolean", DbType.Boolean);
 
@@ -69,16 +73,16 @@ namespace EngramaCoreStandar.Dapper
 			DbTypeMap.Add("System.Object", DbType.Object);
 			DbTypeMap.Add("System.String", DbType.String);
 
+			DbTypeMap.Add("System.Guid", DbType.Guid);
 			DbTypeMap.Add("System.Datetime", DbType.DateTime);
 			DbTypeMap.Add("System.DateTime", DbType.DateTime);
-			DbTypeMap.Add("System.Nullable`1[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]", DbType.DateTime);
 		}
 
 		#region Gets from script
 
 
 
-		public async Task<DataResult<TResult>> GetAsync<TResult>(string Script, string? connectionString = null)
+		public async Task<DataResult<TResult>> GetAsync<TResult>(string Script, string? connectionString = null, string shema = "dbo")
 			where TResult : class, DbResult, new()
 		{
 			if (connectionString.IsEmpty())
@@ -110,17 +114,15 @@ namespace EngramaCoreStandar.Dapper
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine("Failed to execute script: {Script} with connection: {ConnectionString}", Script, connectionString);
-
+				_logger.LogError(ex, "[Dapper] GetAsync<{Type}> failed. Script={Script}", typeof(TResult).Name, Script);
 				resp = DataResult<TResult>.Fail(ex.Message);
-
 			}
 
 			LoggerHelper.ValidateResult(resp);
 			return resp;
 		}
 
-		public async Task<DataResult<IEnumerable<TResult>>> GetAllAsync<TResult>(string script, string? connectionString = null)
+		public async Task<DataResult<IEnumerable<TResult>>> GetAllAsync<TResult>(string script, string? connectionString = null, string shema = "dbo")
 	where TResult : class, DbResult, new()
 		{
 			var result = new DataResult<IEnumerable<TResult>>();
@@ -159,10 +161,7 @@ namespace EngramaCoreStandar.Dapper
 			}
 			catch (Exception ex)
 			{
-				// Log error without displaying sensitive script details
-				Console.WriteLine(ex.Message, "Error executing script with {ConnectionDescription}", connectionString != null ? "custom connection string" : "default connection string");
-
-				// Prepare the failed result with the error message
+				_logger.LogError(ex, "[Dapper] GetAllAsync<{Type}> failed.", typeof(TResult).Name);
 				result = DataResult<IEnumerable<TResult>>.Fail(ex.Message);
 			}
 
@@ -177,7 +176,7 @@ namespace EngramaCoreStandar.Dapper
 
 		#region Gets from TRequest
 
-		public async Task<DataResult<TResult>> GetAsync<TResult, TRequest>(TRequest request, string? connectionString = null)
+		public async Task<DataResult<TResult>> GetAsync<TResult, TRequest>(TRequest request, string? connectionString = null, string shema = "dbo")
 	where TRequest : SpRequest
 	where TResult : class, DbResult, new()
 		{
@@ -189,14 +188,14 @@ namespace EngramaCoreStandar.Dapper
 
 			// Initialize result holder and stored procedure name
 			var result = new DataResult<TResult>();
-			var storedProcedure = $"[dbo].[{request.StoredProcedure}]";
+			var storedProcedure = $"[{shema}].[{request.StoredProcedure}]";
 
 			string executableString = string.Empty;
 
 			try
 			{
 				// Create dynamic parameters from the request
-				var dynamicParameters = CreateDynamicParameters(request);
+				var dynamicParameters = CreateDynamicParameters(request, shema);
 				executableString = dynamicParameters.ExcecutableString;
 
 				// Asynchronously retrieve data
@@ -208,12 +207,12 @@ namespace EngramaCoreStandar.Dapper
 			}
 			catch (SqlException sqlEx)
 			{
-				Console.WriteLine(sqlEx.Message, "SQL error executing procedure: {StoredProcedure} with {ExecutableString}", storedProcedure, executableString);
+				_logger.LogError(sqlEx, "[Dapper] GetAsync<{Type}> SQL error. SP={SP} Exec={Exec}", typeof(TResult).Name, storedProcedure, executableString);
 				result = DataResult<TResult>.Fail(executableString, sqlEx);
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex.Message, "Error executing procedure: {StoredProcedure} with {ExecutableString}", storedProcedure, executableString);
+				_logger.LogError(ex, "[Dapper] GetAsync<{Type}> error. SP={SP} Exec={Exec}", typeof(TResult).Name, storedProcedure, executableString);
 				result = DataResult<TResult>.Fail(ex.Message);
 			}
 
@@ -224,7 +223,7 @@ namespace EngramaCoreStandar.Dapper
 		}
 
 
-		public async Task<DataResult<IEnumerable<TResult>>> GetAllAsync<TResult, TRequest>(TRequest request, string? connectionString = null)
+		public async Task<DataResult<IEnumerable<TResult>>> GetAllAsync<TResult, TRequest>(TRequest request, string? connectionString = null, string shema = "dbo")
 	where TRequest : SpRequest
 	where TResult : class, DbResult, new()
 		{
@@ -233,14 +232,14 @@ namespace EngramaCoreStandar.Dapper
 				connectionString = ConnectionString;
 			}
 
-			var storedProcedure = $"[dbo].[{request.StoredProcedure}]";
+			var storedProcedure = $"[{shema}].[{request.StoredProcedure}]";
 			var result = new DataResult<IEnumerable<TResult>>();
 			string executableString = string.Empty;
 
 			try
 			{
 				// Create dynamic parameters from the request
-				var dynamicParameters = CreateDynamicParameters(request);
+				var dynamicParameters = CreateDynamicParameters(request, shema);
 				executableString = dynamicParameters.ExcecutableString;
 
 				// Asynchronously retrieve all data
@@ -251,12 +250,12 @@ namespace EngramaCoreStandar.Dapper
 			}
 			catch (SqlException sqlEx)
 			{
-				Console.WriteLine(sqlEx.Message, "SQL error while executing stored procedure: {StoredProcedure} with {ExecutableString}", storedProcedure, executableString);
+				_logger.LogError(sqlEx, "[Dapper] GetAllAsync<{Type}> SQL error. SP={SP}", typeof(TResult).Name, storedProcedure);
 				result = DataResult<IEnumerable<TResult>>.Fail(sqlEx.Message);
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex.Message, "Error while executing stored procedure: {StoredProcedure} with {ExecutableString}", storedProcedure, executableString);
+				_logger.LogError(ex, "[Dapper] GetAllAsync<{Type}> error. SP={SP}", typeof(TResult).Name, storedProcedure);
 				result = DataResult<IEnumerable<TResult>>.Fail(ex.Message);
 			}
 
@@ -276,7 +275,7 @@ namespace EngramaCoreStandar.Dapper
 
 		public async Task<DataResult<TResult>> GetWithListAsync<TResult, TRequest>(
 			 TRequest request, string? connectionString = null
-		)
+		, string shema = "dbo")
 			where TRequest : SpRequest
 			where TResult : class, DbResult, new()
 		{
@@ -285,23 +284,25 @@ namespace EngramaCoreStandar.Dapper
 				connectionString = ConnectionString;
 			}
 
-			BuildSqlCommand(request);
+			BuildSqlCommand
+			(request, shema);
 
 			DataResult<TResult> result;
 			TResult responseObject = default(TResult);
 
 			try
 			{
+				var storedProcedure = $"[{shema}].[{request.StoredProcedure}]";
 				using (var connection = new SqlConnection(connectionString))
 				{
 					await connection.OpenAsync();
 
-					using (var command = new SqlCommand(request.StoredProcedure, connection))
+					using (var command = new SqlCommand(storedProcedure, connection))
 					{
 						command.CommandType = CommandType.StoredProcedure;
 
 						// Add parameters from TRequest to the command
-						AddParametersToCommand(command, request);
+						AddParametersToCommand(command, request, shema);
 
 						// Execute the reader and map to TResult
 						responseObject = await ExecuteReaderAndMapResults<TResult>(command);
@@ -325,7 +326,7 @@ namespace EngramaCoreStandar.Dapper
 
 		}
 
-		private static void AddParametersToCommand<TRequest>(SqlCommand command, TRequest request)
+		private static void AddParametersToCommand<TRequest>(SqlCommand command, TRequest request, string shema = "dbo")
 		{
 			var properties = typeof(TRequest).GetProperties();
 
@@ -333,61 +334,111 @@ namespace EngramaCoreStandar.Dapper
 			{
 				var propertyValue = property.GetValue(request);
 
-				if (propertyValue is IEnumerable<object> list && property.PropertyType.IsGenericType)
+				if (TryGetListElementType(property.PropertyType, out var elementType))
 				{
-					// Get the generic type argument of the IEnumerable, which corresponds to your SQL DataType
-					var genericType = property.PropertyType.GetGenericArguments()[0];
-					var typeName = genericType.Name; // This should match the SQL type name if named correspondingly
-
+					var typeName = $"{shema}.{elementType.Name}";
 					var listParameter = new SqlParameter
 					{
-						ParameterName = "@" + property.Name, // Ensures parameter naming convention
+						ParameterName = "@" + property.Name,
 						SqlDbType = SqlDbType.Structured,
-						TypeName = typeName,  // Dynamically assigned TypeName
-						Value = ConvertToDataTable(list)
+						TypeName = typeName,
+						Value = ConvertToDataTable(elementType, propertyValue as System.Collections.IEnumerable)
 					};
 					command.Parameters.Add(listParameter);
 				}
 				else
 				{
-					// Handle regular non-structured parameters
-					command.Parameters.AddWithValue("@" + property.Name, propertyValue ?? DBNull.Value);
+					// SqlDateTime rejects dates before 1753-01-01 (CLR default is 0001-01-01)
+					command.Parameters.AddWithValue("@" + property.Name, NormalizeSqlParameterValue(propertyValue));
 				}
 			}
 		}
 
+		/// <summary>
+		/// Ensures DateTime values are within SQL Server datetime range; otherwise uses Engrama SqlMinDate / DBNull.
+		/// </summary>
+		private static object NormalizeSqlParameterValue(object? propertyValue)
+		{
+			if (propertyValue == null)
+			{
+				return DBNull.Value;
+			}
 
-		// Helper method to convert a list into a DataTable
-		private static DataTable ConvertToDataTable(IEnumerable<object> list)
+			if (propertyValue is DateTime dateTime)
+			{
+				return dateTime < Defaults.SqlMinDate() ? Defaults.SqlMinDate() : dateTime;
+			}
+
+			return propertyValue;
+		}
+
+		/// <summary>
+		/// True when the property is a list/enumerable of a row type (TVP), excluding string and byte[].
+		/// </summary>
+		private static bool TryGetListElementType(Type propertyType, out Type elementType)
+		{
+			elementType = null!;
+			if (propertyType == typeof(string) || propertyType == typeof(byte[]))
+			{
+				return false;
+			}
+
+			var enumerable = propertyType
+				.GetInterfaces()
+				.Concat(new[] { propertyType })
+				.FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+
+			if (enumerable == null)
+			{
+				return false;
+			}
+
+			elementType = enumerable.GetGenericArguments()[0];
+			return elementType != typeof(char);
+		}
+
+		/// <summary>
+		/// Builds a DataTable for a TVP. Always creates columns from <paramref name="elementType"/>
+		/// so empty lists still produce a valid Structured parameter schema.
+		/// </summary>
+		private static DataTable ConvertToDataTable(Type elementType, System.Collections.IEnumerable? list)
 		{
 			var dataTable = new DataTable();
+			var properties = elementType.GetProperties();
+
+			foreach (var property in properties)
+			{
+				dataTable.Columns.Add(property.Name, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
+			}
+
+			if (list == null)
+			{
+				return dataTable;
+			}
+
 			foreach (var item in list)
 			{
-				var itemType = item.GetType();
-				var row = dataTable.NewRow();
-				var properties = itemType.GetProperties();
-
-				// Add columns if the DataTable is empty
-				if (dataTable.Columns.Count == 0)
+				if (item == null)
 				{
-					foreach (var property in properties)
-					{
-						dataTable.Columns.Add(property.Name, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
-					}
+					continue;
 				}
 
-				// Fill the DataRow with the values
+				var row = dataTable.NewRow();
 				foreach (var property in properties)
 				{
-					row[property.Name] = property.GetValue(item) ?? DBNull.Value;
+					var value = property.GetValue(item);
+					if (value is DateTime dateTime && dateTime < Defaults.SqlMinDate())
+					{
+						value = Defaults.SqlMinDate();
+					}
+					row[property.Name] = value ?? DBNull.Value;
 				}
-
 				dataTable.Rows.Add(row);
 			}
+
 			return dataTable;
 		}
 
-		// Helper method to execute reader and map to TResult
 		private static async Task<TResult> ExecuteReaderAndMapResults<TResult>(SqlCommand command) where TResult : new()
 		{
 			TResult result = new TResult();
@@ -396,14 +447,7 @@ namespace EngramaCoreStandar.Dapper
 			{
 				if (await reader.ReadAsync())
 				{
-					foreach (var property in typeof(TResult).GetProperties())
-					{
-						if (!reader.IsDBNull(reader.GetOrdinal(property.Name)))
-						{
-							var value = reader[property.Name];
-							property.SetValue(result, value);
-						}
-					}
+					MapReaderRow(reader, result);
 				}
 			}
 
@@ -412,7 +456,7 @@ namespace EngramaCoreStandar.Dapper
 
 		public async Task<DataResult<IEnumerable<TResult>>> GetAllWithListAsync<TResult, TRequest>(
 			 TRequest request, string? connectionString = null
-		)
+		, string shema = "dbo")
 			where TRequest : SpRequest
 			where TResult : class, DbResult, new()
 		{
@@ -421,8 +465,8 @@ namespace EngramaCoreStandar.Dapper
 				connectionString = ConnectionString;
 			}
 
-			BuildSqlCommand(request);
-
+			var storedProcedure = $"[{shema}].[{request.StoredProcedure}]";
+			BuildSqlCommand(request, shema);
 
 			IEnumerable<TResult> responseObjects = Enumerable.Empty<TResult>();
 			DataResult<IEnumerable<TResult>> result;
@@ -433,14 +477,10 @@ namespace EngramaCoreStandar.Dapper
 				{
 					await connection.OpenAsync();
 
-					using (var command = new SqlCommand(request.StoredProcedure, connection))
+					using (var command = new SqlCommand(storedProcedure, connection))
 					{
 						command.CommandType = CommandType.StoredProcedure;
-
-						// Add parameters from TRequest to the command
-						AddParametersToCommand(command, request);
-
-						// Execute the reader and map results to a list
+						AddParametersToCommand(command, request, shema);
 						responseObjects = await ExecuteReaderAndMapResultsToList<TResult>(command);
 					}
 				}
@@ -456,6 +496,7 @@ namespace EngramaCoreStandar.Dapper
 				result = DataResult<IEnumerable<TResult>>.Fail(Error.Exception("DPGA", ex.Message, "Additional Information"), ex);
 			}
 
+			LoggerHelper.ValidateResultLst(result);
 			return result;
 		}
 
@@ -469,19 +510,41 @@ namespace EngramaCoreStandar.Dapper
 				while (await reader.ReadAsync())
 				{
 					var result = new TResult();
-					foreach (var property in typeof(TResult).GetProperties())
-					{
-						if (!reader.IsDBNull(reader.GetOrdinal(property.Name)))
-						{
-							var value = reader[property.Name];
-							property.SetValue(result, value);
-						}
-					}
+					MapReaderRow(reader, result);
 					results.Add(result);
 				}
 			}
 
 			return results;
+		}
+
+		private static void MapReaderRow<TResult>(System.Data.Common.DbDataReader reader, TResult result)
+		{
+			foreach (var property in typeof(TResult).GetProperties())
+			{
+				var ordinal = TryGetOrdinal(reader, property.Name);
+				if (ordinal == null || reader.IsDBNull(ordinal.Value))
+				{
+					continue;
+				}
+
+				var value = reader.GetValue(ordinal.Value);
+				var targetType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+				property.SetValue(result, Convert.ChangeType(value, targetType));
+			}
+		}
+
+		private static int? TryGetOrdinal(System.Data.Common.DbDataReader reader, string name)
+		{
+			for (var i = 0; i < reader.FieldCount; i++)
+			{
+				if (string.Equals(reader.GetName(i), name, StringComparison.OrdinalIgnoreCase))
+				{
+					return i;
+				}
+			}
+
+			return null;
 		}
 
 
@@ -492,12 +555,12 @@ namespace EngramaCoreStandar.Dapper
 		#region Métodos extras 
 
 
-		private DynamicParametersPair CreateDynamicParameters<T>(T obj) where T : SpRequest
+		private DynamicParametersPair CreateDynamicParameters<T>(T obj, string shema) where T : SpRequest
 		{
 			var parameters = new DynamicParameters();
 			var builder = new StringBuilder();
 
-			builder.Append("EXEC").Append(' ').Append("dbo.").Append(obj.StoredProcedure).Append(' ');
+			builder.Append("EXEC").Append(' ').Append($"{shema}.").Append(obj.StoredProcedure).Append(' ');
 
 			/**/
 
@@ -512,14 +575,21 @@ namespace EngramaCoreStandar.Dapper
 
 					foreach (var prop in OnlyValidAtributos)
 					{
-						var fullname = prop.PropertyType.FullName;
+						var fullname = prop.PropertyType.FullName ?? prop.PropertyType.Name;
 						if (fullname.Contains("System.Nullable"))
 						{
-							fullname = fullname.Replace("System.Nullable`1[[", "");//
-							fullname = fullname.Substring(0, fullname.IndexOf(","));//
+							fullname = fullname.Replace("System.Nullable`1[[", "");
+							var comma = fullname.IndexOf(',');
+							if (comma > 0)
+							{
+								fullname = fullname.Substring(0, comma);
+							}
 						}
 
-						var dbType = DbTypeMap[fullname];
+						if (!DbTypeMap.TryGetValue(fullname, out var dbType))
+						{
+							dbType = DbType.Object;
+						}
 
 						var value = prop.GetValue(obj);
 
@@ -579,13 +649,13 @@ namespace EngramaCoreStandar.Dapper
 			}
 		}
 
-		private static void BuildSqlCommand<TRequest>(TRequest request) where TRequest : SpRequest
+		private void BuildSqlCommand<TRequest>(TRequest request, string shema = "dbo") where TRequest : SpRequest
 		{
 			var sqlBuilder = new StringBuilder();
 			var sqlBuilderList = new StringBuilder();
 			var properties = typeof(TRequest).GetProperties();
 
-			sqlBuilder.AppendLine($"EXEC {request.StoredProcedure} ");
+			sqlBuilder.AppendLine($"EXEC {shema}.{request.StoredProcedure} ");
 
 			foreach (var property in properties)
 			{
@@ -595,14 +665,14 @@ namespace EngramaCoreStandar.Dapper
 				if (property.Name != "StoredProcedure")
 				{
 
-					if (propertyValue is System.Collections.IEnumerable list && property.PropertyType.IsGenericType)
+					if (TryGetListElementType(property.PropertyType, out var elementType)
+						&& propertyValue is System.Collections.IEnumerable list)
 					{
-						// Extract the generic type name (assuming it's the same as the SQL type)
-						var parameterTypeName = property.PropertyType.GetGenericArguments()[0].Name;
-						sqlBuilderList.AppendLine($"DECLARE @{property.Name} {parameterTypeName};");
+						sqlBuilderList.AppendLine($"DECLARE @{property.Name} {shema}.{elementType.Name};");
 
 						foreach (var item in list)
 						{
+							if (item == null) continue;
 							var itemBuilder = new StringBuilder();
 							sqlBuilderList.Append($"INSERT INTO @{property.Name} (");
 
@@ -639,15 +709,17 @@ namespace EngramaCoreStandar.Dapper
 					}
 				}
 			}
-			sqlBuilder[sqlBuilder.ToString().LastIndexOf(',')] = ';';
-			// Append fi nal execution command
+			var sqlText = sqlBuilder.ToString();
+			var lastComma = sqlText.LastIndexOf(',');
+			if (lastComma >= 0)
+			{
+				sqlBuilder[lastComma] = ';';
+			}
 
-			// Print the constructed SQL command
 			sqlBuilderList.AppendLine("");
 			sqlBuilderList.Append(sqlBuilder);
 
-
-			Console.WriteLine(sqlBuilderList.ToString());
+			_logger.LogDebug("[Dapper] BuildSqlCommand:\n{Sql}", sqlBuilderList.ToString());
 
 		}
 

@@ -28,7 +28,7 @@ namespace EngramaCoreStandar.Dapper
 				await using var db = new SqlConnection(connectionString);
 				await db.OpenAsync();
 
-				return await db.ExecuteScalarAsync<T>(new CommandDefinition(query, null, commandTimeout: 250, commandType: CommandType.Text));
+				return await db.QueryFirstOrDefaultAsync<T>(new CommandDefinition(query, null, commandTimeout: 250, commandType: CommandType.Text));
 			}
 			catch (SqlException ex)
 			{

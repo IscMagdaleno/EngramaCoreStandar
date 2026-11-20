@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 
+using Microsoft.Extensions.Logging.Abstractions; // Agrega este using
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace EngramaCoreStandar.Mapper
 {
 	public class MapperHelper
@@ -14,7 +17,9 @@ namespace EngramaCoreStandar.Mapper
 		public MapperHelper()
 		{
 			_mappedTypes = new HashSet<(Type, Type)>();
-			_configuration = new MapperConfiguration(cfg => { });
+
+			// AutoMapper 15.x: Requiere configuración inicial y un ILoggerFactory (NullLoggerFactory para ignorarlo)
+			_configuration = new MapperConfiguration(cfg => { }, NullLoggerFactory.Instance);
 			_mapper = _configuration.CreateMapper();
 		}
 
@@ -28,6 +33,7 @@ namespace EngramaCoreStandar.Mapper
 					if (!_mappedTypes.Contains(typePair))
 					{
 						// Crea una nueva configuración con los mapeos existentes más el nuevo
+						// AutoMapper 15.x: Agregamos NullLoggerFactory.Instance como segundo parámetro
 						var newConfig = new MapperConfiguration(cfg =>
 						{
 							// Reconstruye los mapeos existentes
@@ -37,7 +43,8 @@ namespace EngramaCoreStandar.Mapper
 							}
 							// Agrega el nuevo mapeo
 							cfg.CreateMap<T, K>().ReverseMap();
-						});
+						}, NullLoggerFactory.Instance);
+
 						_configuration = newConfig;
 						_mapper = _configuration.CreateMapper();
 						_mappedTypes.Add(typePair);
@@ -45,7 +52,6 @@ namespace EngramaCoreStandar.Mapper
 				}
 			}
 		}
-
 
 		public K Get<T, K>(T modelo)
 		{
@@ -78,4 +84,3 @@ namespace EngramaCoreStandar.Mapper
 		}
 	}
 }
-

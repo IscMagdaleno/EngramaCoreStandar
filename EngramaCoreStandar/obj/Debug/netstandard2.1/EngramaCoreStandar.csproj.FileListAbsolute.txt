@@ -31,3 +31,39 @@ C:\ReposEngrama\Nugets\Standar\EngramaCoreStandar\obj\Debug\netstandard2.1\Engra
 C:\ReposEngrama\Nugets\Standar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.sourcelink.json
 C:\ReposEngrama\Nugets\Standar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.dll
 C:\ReposEngrama\Nugets\Standar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.pdb
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\tmp_build\EngramaCoreStandar.deps.json
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\tmp_build\EngramaCoreStandar.dll
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\tmp_build\EngramaCoreStandar.pdb
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.deps.json
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.dll
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.pdb
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.AssemblyReference.cache
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfoInputs.cache
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfo.cs
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.CoreCompileInputs.cache
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.dll
+C:\Users\ing_s\OneDrive\ngrok_recovery_codes\Engrama\Engrama- AIon\AIonV2\AionWorkspace\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.pdb
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.AssemblyReference.cache
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.GeneratedMSBuildEditorConfig.editorconfig
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfoInputs.cache
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.AssemblyInfo.cs
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.csproj.CoreCompileInputs.cache
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.sourcelink.json
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.dll
+c:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\obj\Debug\netstandard2.1\EngramaCoreStandar.pdb
+C:\Users\ing_s\AppData\Local\Temp\engrama-core-build\EngramaCoreStandar.deps.json
+C:\Users\ing_s\AppData\Local\Temp\engrama-core-build\EngramaCoreStandar.dll
+C:\Users\ing_s\AppData\Local\Temp\engrama-core-build\EngramaCoreStandar.pdb
+C:\Users\ing_s\AppData\Local\Temp\templatepwa-build\EngramaCoreStandar.deps.json
+C:\Users\ing_s\AppData\Local\Temp\templatepwa-build\EngramaCoreStandar.dll
+C:\Users\ing_s\AppData\Local\Temp\templatepwa-build\EngramaCoreStandar.pdb
+C:\Users\ing_s\AppData\Local\Temp\templatepwa-guide-build\EngramaCoreStandar.deps.json
+C:\Users\ing_s\AppData\Local\Temp\templatepwa-guide-build\EngramaCoreStandar.dll
+C:\Users\ing_s\AppData\Local\Temp\templatepwa-guide-build\EngramaCoreStandar.pdb
+C:\Users\ing_s\AppData\Local\Temp\pwa-guide-build2\EngramaCoreStandar.deps.json
+C:\Users\ing_s\AppData\Local\Temp\pwa-guide-build2\EngramaCoreStandar.dll
+C:\Users\ing_s\AppData\Local\Temp\pwa-guide-build2\EngramaCoreStandar.pdb
+C:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.deps.json
+C:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.dll
+C:\ReposGithub\Templates\TemplatePWA\EngramaCoreStandar\EngramaCoreStandar\bin\Debug\netstandard2.1\EngramaCoreStandar.pdb

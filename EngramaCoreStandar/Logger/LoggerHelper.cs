@@ -87,19 +87,17 @@ namespace EngramaCoreStandar.Logger
 		{
 			if (Model.IsNull())
 			{
-				if (Model.bResult)
-				{
-					Console.WriteLine($"[{Model.ToString()}] - Resultado correcto");
-				}
-				else
-				{
-					Console.WriteLine($"[{Model.GetType().Name}] - Alerta -[{Model.vchMessage}]");
-				}
+				Console.WriteLine($"[{typeof(T).Name}] - Error -- Modelo es Nulo]");
+				return;
+			}
+
+			if (Model.bResult)
+			{
+				Console.WriteLine($"[{Model}] - Resultado correcto");
 			}
 			else
 			{
-				Console.WriteLine($"[{Model.GetType().Name}] - Error -- Modelo es Nulo]");
-
+				Console.WriteLine($"[{Model.GetType().Name}] - Alerta -[{Model.vchMessage}]");
 			}
 		}
 

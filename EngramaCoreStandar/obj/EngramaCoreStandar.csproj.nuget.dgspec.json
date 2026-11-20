@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj": {}
+    "C:\\ReposGithub\\Templates\\TemplatePWA\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj": {}
   },
   "projects": {
-    "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj": {
-      "version": "1.0.8",
+    "C:\\ReposGithub\\Templates\\TemplatePWA\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj": {
+      "version": "1.1.2",
       "restore": {
-        "projectUniqueName": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
+        "projectUniqueName": "C:\\ReposGithub\\Templates\\TemplatePWA\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
         "projectName": "EngramaCoreStandar",
-        "projectPath": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
+        "projectPath": "C:\\ReposGithub\\Templates\\TemplatePWA\\EngramaCoreStandar\\EngramaCoreStandar\\EngramaCoreStandar.csproj",
         "packagesPath": "C:\\Users\\ing_s\\.nuget\\packages\\",
-        "outputPath": "C:\\ReposGithub\\Core\\EngramaCoreStandar\\EngramaCoreStandar\\obj\\",
+        "outputPath": "C:\\ReposGithub\\Templates\\TemplatePWA\\EngramaCoreStandar\\EngramaCoreStandar\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,10 +26,12 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
+            "framework": "netstandard2.1",
             "targetAlias": "netstandard2.1",
             "projectReferences": {}
           }
@@ -44,15 +46,16 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "netstandard2.1": {
+          "framework": "netstandard2.1",
           "targetAlias": "netstandard2.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[15.1.3, )"
             },
             "Dapper": {
               "target": "Package",
@@ -67,6 +70,10 @@
               "version": "[9.0.2, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[9.0.6, )"
             },
@@ -91,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
